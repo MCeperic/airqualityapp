@@ -1,0 +1,18 @@
+<h2>Sensor Readings</h2>
+<table *ngIf="sensorReadings.length > 0; else noData">
+  <tr>
+    <th>Type</th>
+    <th>Value</th>
+    <th>Timestamp</th>
+  </tr>
+  <tr *ngFor="let reading of sensorReadings">
+    <td>{{ reading.sensorType }}</td>
+    <td>{{ reading.sensorValue }}</td>
+    <td>{{ reading.timestamp }}</td>
+  </tr>
+</table>
+
+<ng-template #noData>
+  <p>No sensor readings found.</p>
+</ng-template>
+

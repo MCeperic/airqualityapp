@@ -1,0 +1,13 @@
+<div class="form-container">
+    <h3>Add New Sensor Reading</h3>
+    <form (ngSubmit)="onSubmit()">
+      <label for="sensorType">Sensor Type</label>
+      <input type="text" id="sensorType" [(ngModel)]="sensorReading.sensorType" name="sensorType" required>
+  
+      <label for="sensorValue">Sensor Value</label>
+      <input type="number" id="sensorValue" [(ngModel)]="sensorReading.sensorValue" name="sensorValue" required>
+  
+      <button type="submit">Save Reading</button>
+    </form>
+  </div>
+  
