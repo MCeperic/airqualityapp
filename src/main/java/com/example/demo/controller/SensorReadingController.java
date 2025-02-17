@@ -24,7 +24,6 @@ public class SensorReadingController {
         if (readings.isEmpty()){
             return ResponseEntity.noContent().build();
         }
-
         return ResponseEntity.ok(readings);
     }
     @GetMapping("/readings/{type}")

@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.time.LocalDateTime;
@@ -15,12 +12,17 @@ public class SensorReading {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String sensorType;
-    private Double value;
+
+    @Column(name = "sensor_value")
+    private Double sensorValue;
     private LocalDateTime timestamp;
 
-    public SensorReading(String sensorType, Double value, LocalDateTime timestamp) {
+    public SensorReading() {
+    }
+
+    public SensorReading(String sensorType, Double sensorValue, LocalDateTime timestamp) {
         this.sensorType = sensorType;
-        this.value = value;
+        this.sensorValue = sensorValue;
         this.timestamp = timestamp;
     }
 
@@ -32,12 +34,12 @@ public class SensorReading {
         this.id = id;
     }
 
-    public Double getValue() {
-        return value;
+    public Double getSensorValue() {
+        return sensorValue;
     }
 
-    public void setValue(Double value) {
-        this.value = value;
+    public void setSensorValue(Double sensorValue) {
+        this.sensorValue = sensorValue;
     }
 
     public String getSensorType() {
