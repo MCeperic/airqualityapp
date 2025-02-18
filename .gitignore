@@ -31,3 +31,22 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Node modules
+/node_modules/
+
+# Angular CLI cache
+/.angular/
+
+# VS Code settings
+/.vscode/
+
+# Environment variables
+/.env
+
+# Log files
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
