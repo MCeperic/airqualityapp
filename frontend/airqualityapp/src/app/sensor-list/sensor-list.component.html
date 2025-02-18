@@ -30,7 +30,7 @@
   <tr *ngFor="let reading of sensorReadings | slice:0:100">
     <td>{{ reading.timestamp }}</td>
     <td>{{ reading.sensorType }}</td>
-    <td>{{ reading.sensorValue }}</td>
+    <td>{{ reading.value }}</td>
   </tr>
 </table>
 

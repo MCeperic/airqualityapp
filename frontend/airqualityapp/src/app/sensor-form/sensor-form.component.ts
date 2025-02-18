@@ -12,7 +12,7 @@ import { SensorReading } from '../models/sensor-reading.model';
 export class SensorFormComponent {
   sensorReading: SensorReading = {
     sensorType: '',
-    sensorValue: 0,
+    value: 0,
     timestamp: new Date().toISOString()
   };
 

@@ -1,5 +1,5 @@
 export interface SensorReading {
     sensorType: string;
-    sensorValue: number;
+    value: number;
     timestamp: string;
 }
