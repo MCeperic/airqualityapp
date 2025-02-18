@@ -1,0 +1,10 @@
+.chart-container {
+    width: 100%;
+    height: 400px; /* Set a height to ensure the chart has space */
+  }
+  
+  canvas {
+    width: 100% !important; /* Ensure canvas stretches to fill container */
+    height: 100% !important;
+  }
+  

@@ -1,4 +1,4 @@
-<h2>Sensor Readings</h2>
+<!--<h2>Sensor Readings</h2>
 <table *ngIf="sensorReadings.length > 0; else noData">
   <tr>
     <th>Type</th>
@@ -15,4 +15,22 @@
 <ng-template #noData>
   <p>No sensor readings found.</p>
 </ng-template>
+!-->
+
+<div class="chart-container">
+  <canvas id="sensorChart"></canvas>
+</div>
+
+<table>
+  <tr>
+    <th>Timestamp</th>
+    <th>Sensor Type</th>
+    <th>Value</th>
+  </tr>
+  <tr *ngFor="let reading of sensorReadings | slice:0:100">
+    <td>{{ reading.timestamp }}</td>
+    <td>{{ reading.sensorType }}</td>
+    <td>{{ reading.sensorValue }}</td>
+  </tr>
+</table>
 
