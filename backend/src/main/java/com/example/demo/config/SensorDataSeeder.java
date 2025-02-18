@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class SensorDataSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         LocalDateTime timestamp = LocalDateTime.now().minusDays(10);
         Integer entries = 1440;
+        
 
         for (int i = 0; i < entries; i++) {
             timestamp = timestamp.plusMinutes(10);
