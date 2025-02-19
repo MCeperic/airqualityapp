@@ -1,0 +1,13 @@
+.dashboard-container {
+    text-align: center;
+  }
+  
+.circle-progress {
+    margin-top: 20px;
+  }
+
+.aqi-center-text {
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+  }

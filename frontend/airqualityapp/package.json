@@ -21,6 +21,7 @@
     "chart.js": "^4.4.7",
     "chartjs-adapter-date-fns": "^3.0.0",
     "dayjs": "^1.11.13",
+    "ng-circle-progress": "^1.7.1",
     "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
