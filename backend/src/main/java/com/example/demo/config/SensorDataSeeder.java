@@ -6,7 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +15,7 @@ public class SensorDataSeeder implements CommandLineRunner {
     private final SensorReadingRepository repository;
     private final Random random = new Random();
 
-    private Double co2 = 400.0;
+    private Double no2 = 400.0;
     private Double pm2point5 = 15.0;
     private Double pm10 = 25.0;
 
@@ -28,17 +27,17 @@ public class SensorDataSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         LocalDateTime timestamp = LocalDateTime.now().minusDays(10);
         Integer entries = 1440;
-        
+
 
         for (int i = 0; i < entries; i++) {
             timestamp = timestamp.plusMinutes(10);
 
-            co2 = adjustValue(co2, 10.0);
+            no2 = adjustValue(no2, 10.0);
             pm2point5 = adjustValue(pm2point5, 2.0);
             pm10 = adjustValue(pm10, 3.0);
 
             List<SensorReading> readings = List.of(
-                    new SensorReading("CO2", co2, timestamp),
+                    new SensorReading("NO2", no2, timestamp),
                     new SensorReading("PM2.5", pm2point5, timestamp),
                     new SensorReading("PM10", pm10, timestamp)
             );

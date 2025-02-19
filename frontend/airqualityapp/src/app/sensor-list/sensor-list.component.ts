@@ -38,12 +38,12 @@ export class SensorListComponent implements OnInit{
     }
 
     const timestamps = this.sensorReadings.map((entry: any) => entry.timestamp);
-    const co2Values = this.sensorReadings.filter((entry: any) => entry.sensorType === 'CO2').map((entry: any) => entry.value);
+    const no2Values = this.sensorReadings.filter((entry: any) => entry.sensorType === 'NO2').map((entry: any) => entry.value);
     const pm25Values = this.sensorReadings.filter((entry: any) => entry.sensorType === 'PM2.5').map((entry: any) => entry.value);
     const pm10Values = this.sensorReadings.filter((entry: any) => entry.sensorType === 'PM10').map((entry: any) => entry.value);
 
     console.log('Timestamps:', timestamps);
-    console.log('CO2 Values:', co2Values);
+    console.log('NO2 Values:', no2Values);
     console.log('PM2.5 Values:', pm25Values);
     console.log('PM10 Values:', pm10Values);
     console.log(this.sensorReadings);
@@ -55,8 +55,8 @@ export class SensorListComponent implements OnInit{
         labels: timestamps,
         datasets: [
           {
-            label: 'CO2 Levels',
-            data: co2Values,
+            label: 'NO2 Levels',
+            data: no2Values,
             borderColor: 'rgba(255, 99, 132, 1)',
             fill: false
           },

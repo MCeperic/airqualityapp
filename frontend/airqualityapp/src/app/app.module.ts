@@ -7,12 +7,14 @@ import { SensorListComponent } from './sensor-list/sensor-list.component';
 import { SensorFormComponent } from './sensor-form/sensor-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SensorListComponent,
-    SensorFormComponent
+    SensorFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
