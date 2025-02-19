@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SensorReading } from './models/sensor-reading.model';
+import { SensorTrend } from './models/sensor-trend.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class SensorService {
 
   getAQI(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/dashboard/aqi`);
+  }
+
+  getReadingsWithTrends(): Observable<SensorTrend[]> {
+    return this.http.get<SensorTrend[]>(`${this.apiUrl}/dashboard/cards`)
   }
 }

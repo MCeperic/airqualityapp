@@ -1,0 +1,28 @@
+.sensor-cards {
+    display: flex;
+    gap: 15px;
+  }
+  
+.sensor-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+.trend-up {
+    color: green;
+    font-weight: bold;
+  }
+  
+.trend-down {
+    color: red;
+    font-weight: bold;
+  }
+  
+.trend-steady {
+    color: gray;
+  }
+  

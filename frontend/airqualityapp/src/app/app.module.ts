@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgCircleProgressModule} from 'ng-circle-progress';
+import { SensorCardsComponent } from './sensor-cards/sensor-cards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SensorListComponent,
     SensorFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    SensorCardsComponent
   ],
   imports: [
     BrowserModule,
