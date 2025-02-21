@@ -32,4 +32,8 @@ export class SensorService {
   getReadingsWithTrends(): Observable<SensorTrend[]> {
     return this.http.get<SensorTrend[]>(`${this.apiUrl}/dashboard/cards`)
   }
+
+  getHistory(sensorType: string, range: string): Observable<SensorReading[]> {
+    return this.http.get<SensorReading[]>(`${this.apiUrl}/history?sensorType=${sensorType}&range=${range}`);
+  }
 }

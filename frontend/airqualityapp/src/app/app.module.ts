@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgCircleProgressModule} from 'ng-circle-progress';
 import { SensorCardsComponent } from './sensor-cards/sensor-cards.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SensorCardsComponent } from './sensor-cards/sensor-cards.component';
     SensorListComponent,
     SensorFormComponent,
     DashboardComponent,
-    SensorCardsComponent
+    SensorCardsComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
