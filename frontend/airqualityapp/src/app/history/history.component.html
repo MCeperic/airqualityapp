@@ -9,8 +9,6 @@
     <button (click)="onRangeChange('24h')" [class.active]="selectedRange === '24h'">24h</button>
     <button (click)="onRangeChange('7d')" [class.active]="selectedRange === '7d'">7d</button>
 
-    <div>
-        <app-chart [data]="historicalData"></app-chart>
-    </div>
+    <canvas #myChart></canvas>
 
 </div>

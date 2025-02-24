@@ -1,8 +1,8 @@
 <div class="sensor-cards">
     <div *ngFor="let sensor of sensorTrends" class="sensor-card">
         <h3>{{ sensor.sensorType }}</h3>
-        <p>Current: {{ sensor.latestValue }}</p>
         <p>Previous: {{ sensor.previousValue }}</p>
+        <p><b>Current:</b> {{ sensor.latestValue }}</p>
         <p>Timestamp: {{ sensor.currentTimestamp }}</p>
         <p class="trend" [ngClass]="getTrendClass(sensor.trend)">
             Trend: {{ sensor.trend === 'up' ? '📈' : (sensor.trend === 'down' ? '📉' : '➖') }}
