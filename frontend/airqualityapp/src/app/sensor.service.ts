@@ -21,10 +21,6 @@ export class SensorService {
     return this.http.get<any>(`${this.apiUrl}/readings/${sensorType}`);
   }
 
-  saveReading(sensorReading: SensorReading): Observable<SensorReading>{
-    return this.http.post<SensorReading>(`${this.apiUrl}/readings`, sensorReading);
-  }
-
   getAQI(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/dashboard/aqi`);
   }

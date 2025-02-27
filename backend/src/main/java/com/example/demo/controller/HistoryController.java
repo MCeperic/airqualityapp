@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/aqa/history")
+@RequestMapping("/aqa")
 public class HistoryController {
 
     private HistoryService historyService;
@@ -20,7 +20,7 @@ public class HistoryController {
         this.historyService = historyService;
     }
 
-    @GetMapping
+    @GetMapping("/history")
     public ResponseEntity<List<SensorReadingDTO>> getHistoricalData(
             @RequestParam String sensorType,
             @RequestParam String range) {
