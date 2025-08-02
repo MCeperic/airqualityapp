@@ -33,10 +33,10 @@ build/
 .vscode/
 
 # Node modules
-/node_modules/
+/frontend/airqualityapp/node_modules/
 
 # Angular CLI cache
-/.angular/
+/frontend/airqualityapp/.angular/
 
 # VS Code settings
 /.vscode/
@@ -50,3 +50,9 @@ build/
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+# DB setup
+/data/
+
+# HTTP testing
+/backend/.http/
