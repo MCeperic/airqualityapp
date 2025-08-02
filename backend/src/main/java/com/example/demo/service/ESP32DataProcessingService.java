@@ -49,10 +49,9 @@ public class ESP32DataProcessingService {
         }
     }
     
-    // TODO: Extract sensor nodes in separate variables and check status before. Tidying
     private void processBME280Data(JsonNode mainNode, LocalDateTime timestamp){
         if (!mainNode.has("bme280")){
-            log.error("JSON is missing bme280 node!");
+            log.error("JSON is missing BME280 node!");
             return;
         }
         JsonNode bme280Node = mainNode.get("bme280");
@@ -78,7 +77,7 @@ public class ESP32DataProcessingService {
 
     private void processSCD40Data(JsonNode mainNode, LocalDateTime timestamp){
         if (!mainNode.has("scd40")){
-            log.error("JSON is missing scd40 node!");
+            log.error("JSON is missing SCD40 node!");
             return;
         }
         JsonNode scd40Node = mainNode.get("scd40");
@@ -130,7 +129,7 @@ public class ESP32DataProcessingService {
 
     private void processPMS5003Data(JsonNode mainNode, LocalDateTime timestamp){
         if (!mainNode.has("pms5003")){
-            log.error("JSON is missing pms5003 node!");
+            log.error("JSON is missing PMS5003 node!");
             return;
         }
         JsonNode pms5003Node = mainNode.get("pms5003");
