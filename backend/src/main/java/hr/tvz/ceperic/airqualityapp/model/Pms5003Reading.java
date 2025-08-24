@@ -19,8 +19,7 @@ public class Pms5003Reading {
     @Column(name = "pm1_0")
     private Integer pm1;
     
-    @Column(name = "pm2_5")
-    private Integer pm25;
+    private Integer pm2_5;
 
     private Integer pm10;
     
