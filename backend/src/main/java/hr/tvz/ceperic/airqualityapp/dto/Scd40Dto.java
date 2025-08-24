@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class Bme280Dto {
+public class Scd40Dto {
+    private Integer co2;
     private Double temperature;
     private Double humidity;
-    private Double pressure;
     private String status;
     private LocalDateTime timestamp;
 }
