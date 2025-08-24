@@ -50,25 +50,23 @@ public class Esp32DataProcessingService {
     }
     
     private void processBME280Data(JsonNode mainNode, LocalDateTime timestamp){
-        if (!mainNode.has("bme280")){
-            log.error("JSON is missing BME280 node!");
-            return;
-        }
-        JsonNode bme280Node = mainNode.get("bme280");
-        String status = bme280Node.get("status").asText();
-
-        if (!"ok".equals(status)){
-            log.error("BME280 status is {}", status);
-            return;
-        }
         try{
+            JsonNode bme280Node = mainNode.get("bme280");
+            String status = bme280Node.get("status").asText();
+            boolean isOk = "ok".equals(status);
+
+            if (!isOk){
+                log.warn("BME280 sensor status: {}", status);
+            }
+
             Bme280Reading bme280Reading = Bme280Reading.builder()
-                                        .temperature(bme280Node.get("temperature").doubleValue())
-                                        .humidity(bme280Node.get("humidity").doubleValue())
-                                        .pressure(bme280Node.get("pressure").doubleValue())
+                                        .temperature(isOk ? bme280Node.get("temperature").doubleValue() : null)
+                                        .humidity(isOk ? bme280Node.get("humidity").doubleValue() : null)
+                                        .pressure(isOk ? bme280Node.get("pressure").doubleValue() : null)
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
+            
             bme280Repository.save(bme280Reading);
         } catch (Exception e){
             log.error("Error processing BME280 data: {}", e.getMessage());
@@ -76,22 +74,19 @@ public class Esp32DataProcessingService {
     }
 
     private void processSCD40Data(JsonNode mainNode, LocalDateTime timestamp){
-        if (!mainNode.has("scd40")){
-            log.error("JSON is missing SCD40 node!");
-            return;
-        }
-        JsonNode scd40Node = mainNode.get("scd40");
-        String status = scd40Node.get("status").asText();
-
-        if (!"ok".equals(status)){
-            log.error("SCD40 status is {}", status);
-            return;
-        }
         try{
+            JsonNode scd40Node = mainNode.get("scd40");
+            String status = scd40Node.get("status").asText();
+            boolean isOk = "ok".equals(status);
+
+            if (!isOk){
+                log.warn("SCD40 sensor status: {}", status);
+            }
+            
             Scd40Reading scd40Reading = Scd40Reading.builder()
-                                        .co2(scd40Node.get("co2").intValue())
-                                        .temperature(scd40Node.get("temp").doubleValue())
-                                        .humidity(scd40Node.get("humidity").doubleValue())
+                                        .co2(isOk ? scd40Node.get("co2").intValue() : null)
+                                        .temperature(isOk ? scd40Node.get("temp").doubleValue() : null)
+                                        .humidity(isOk ? scd40Node.get("humidity").doubleValue() : null)
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
@@ -103,20 +98,17 @@ public class Esp32DataProcessingService {
     }
 
     private void processSGP40Data(JsonNode mainNode, LocalDateTime timestamp){
-        if (!mainNode.has("sgp40")){
-            log.error("JSON is missing SGP40 node!");
-            return;
-        }
-        JsonNode sgp40Node = mainNode.get("sgp40");
-        String status = sgp40Node.get("status").asText();
-
-        if (!"ok".equals(status)){
-            log.error("SGP40 status is {}", status);
-            return;
-        }
         try{
+            JsonNode sgp40Node = mainNode.get("sgp40");
+            String status = sgp40Node.get("status").asText();
+            boolean isOk = "ok".equals(status);
+
+            if (!isOk){
+                log.warn("SGP40 sensor status: {}", status);
+            }
+
             Sgp40Reading sgp40Reading = Sgp40Reading.builder()
-                                        .vocIndex(sgp40Node.get("voc_index").intValue())
+                                        .vocIndex(isOk ? sgp40Node.get("voc_index").intValue() : null)
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
@@ -128,22 +120,19 @@ public class Esp32DataProcessingService {
     }
 
     private void processPMS5003Data(JsonNode mainNode, LocalDateTime timestamp){
-        if (!mainNode.has("pms5003")){
-            log.error("JSON is missing PMS5003 node!");
-            return;
-        }
-        JsonNode pms5003Node = mainNode.get("pms5003");
-        String status = pms5003Node.get("status").asText();
-
-        if (!"ok".equals(status)){
-            log.error("PMS5003 status is {}", status);
-            return;
-        }
         try{
+            JsonNode pms5003Node = mainNode.get("pms5003");
+            String status = pms5003Node.get("status").asText();
+            boolean isOk = "ok".equals(status);
+
+            if (!isOk){
+                log.warn("PMS5003 sensor status: {}", status);
+            }
+
             Pms5003Reading pms5003Reading = Pms5003Reading.builder()
-                                            .pm1(pms5003Node.get("pm1_0").intValue())
-                                            .pm25(pms5003Node.get("pm2_5").intValue())
-                                            .pm10(pms5003Node.get("pm10").intValue())
+                                            .pm1(isOk ? pms5003Node.get("pm1_0").intValue() : null)
+                                            .pm2_5(isOk ? pms5003Node.get("pm2_5").intValue() : null)
+                                            .pm10(isOk ? pms5003Node.get("pm10").intValue() : null)
                                             .status(status)
                                             .timestamp(timestamp)
                                             .build();
