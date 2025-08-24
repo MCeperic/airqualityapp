@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SensorReading } from './models/sensor-reading.model';
 import { SensorTrend } from './models/sensor-trend.model';
+import { LatestSensorReadings } from './models/latest-sensor-readings.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class SensorService {
 
   getHistory(sensorType: string, range: string): Observable<SensorReading[]> {
     return this.http.get<SensorReading[]>(`${this.apiUrl}/history?sensorType=${sensorType}&range=${range}`);
+  }
+
+  getLatestReadings():Observable<LatestSensorReadings> {
+    return this.http.get<LatestSensorReadings>(`${this.apiUrl}/dashboard/latestReadings`);
   }
 }

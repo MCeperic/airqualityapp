@@ -1,30 +1,96 @@
-<div class="dashboard-container">
-    <h1>Dashboard</h1>
-    <p>Latest AQI: {{ this.latestAQI }}</p>
+<div *ngIf="isLoading">
+  <p>Loading sensor data...</p>
+</div>
 
+<div *ngIf="!isLoading && !latestSensorReadings && errorMessage">
+  <p>{{ errorMessage }}</p>
+  <button (click)="loadLatestReadings()">Retry</button>
+</div>
 
-    <circle-progress
-        [percent]="getAQIPercentage()"
-        [radius]="100"
-        [outerStrokeWidth]="16" 
-        [innerStrokeWidth]="8"
-        [outerStrokeColor]="getAQIColor()"
-        [innerStrokeColor]="'#e6e6e6'"
-        [animation]="true"
-        [animationDuration]="300"
-        [showBackground]="false"
-        [title]="'AQI: ' + latestAQI"
-        [titleFontSize]="'24'"
-        [titleColor]="'#333'"
-        [titleFontWeight]="'bold'"
-        [showTitle]="true"
-        [showUnits]="false"
-        [showSubtitle]="true"
-        [subtitle]="getAQIText()"
-        [subtitleFontSize]="'14'"
-        [subtitleColor]="'#333'">
-    </circle-progress>
+<div class="dashboard-container" *ngIf="!isLoading && latestSensorReadings">
 
-    <app-sensor-cards></app-sensor-cards>
+  <h2>Kvaliteta zraka</h2>
+  <div class="sensor-grid">
+    <div class="sensor-card">
+      <div class="sensor-header">
+        <h3>PM1</h3>
+        <span class="sensor-unit">μg/m³</span>
+      </div>
+      <div class="sensor-value good">{{ latestSensorReadings.pms5003Dto.pm1 }}</div>
+      <div class="sensor-status">Dobro</div>
+      <div class="sensor-trend trend-stable">
+      </div>
+    </div>
+    
+    <div class="sensor-card">
+      <div class="sensor-header">
+        <h3>PM2.5</h3>
+        <span class="sensor-unit">μg/m³</span>
+      </div>
+      <div class="sensor-value moderate">{{ latestSensorReadings.pms5003Dto.pm2_5 }}</div>
+      <div class="sensor-status">Umjereno</div>
+      <div class="sensor-trend trend-up">
+      </div>
+    </div>
+    
+    <div class="sensor-card">
+      <div class="sensor-header">
+        <h3>PM10</h3>
+        <span class="sensor-unit">μg/m³</span>
+      </div>
+      <div class="sensor-value moderate">{{ latestSensorReadings.pms5003Dto.pm10 }}</div>
+      <div class="sensor-status">Umjereno</div>
+      <div class="sensor-trend trend-down">
+      </div>
+    </div>
 
+    <div class="sensor-card">
+      <div class="sensor-header">
+        <h3>CO2</h3>
+        <span class="sensor-unit">ppm</span>
+      </div>
+      <div class="sensor-value good">{{ latestSensorReadings.scd40Dto.co2 }}</div>
+      <div class="sensor-status">Dobro</div>
+      <div class="sensor-trend trend-stable">
+      </div>
+    </div>
+    
+    <div class="sensor-card">
+      <div class="sensor-header">
+        <h3>VOC</h3>
+        <span class="sensor-unit">mg/m³</span>
+      </div>
+      <div class="sensor-value good">{{ latestSensorReadings.sgp40Dto.vocIndex}}</div>
+      <div class="sensor-status">Dobro</div>
+      <div class="sensor-trend trend-up">
+      </div>
+    </div>
+  </div>
+  
+  <h2>Klimatski uvjeti</h2>
+  <div class="atmospheric-conditions">
+    <div class="condition-card">
+      <div class="condition-header">
+        <h3>Temperatura</h3>
+        <span class="condition-unit">°C</span>
+      </div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.temperature }}</div>
+    </div>
+    
+    <div class="condition-card">
+      <div class="condition-header">
+        <h3>Vlažnost</h3>
+        <span class="condition-unit">%</span>
+      </div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.humidity }}</div>
+    </div>
+    
+    <div class="condition-card">
+      <div class="condition-header">
+        <h3>Pritisak</h3>
+        <span class="condition-unit">hPa</span>
+      </div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.pressure }}</div>
+    </div>
+  </div>
 </div>

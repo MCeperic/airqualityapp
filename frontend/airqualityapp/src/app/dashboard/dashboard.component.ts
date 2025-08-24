@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SensorService } from '../sensor.service';
+import { LatestSensorReadings } from '../models/latest-sensor-readings.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,55 +9,29 @@ import { SensorService } from '../sensor.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  latestAQI: number = 0;
+  latestSensorReadings: LatestSensorReadings | null = null;
+  isLoading: boolean = true;
+  errorMessage: string = '';
 
   constructor(private sensorService: SensorService) {}
 
   ngOnInit(): void {
-    this.sensorService.getAQI().subscribe(
-      (aqi: number) => {
-        this.latestAQI = aqi;
-        console.log('Latest AQI:', this.latestAQI);
+    this.loadLatestReadings();
+  }
+
+  loadLatestReadings(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.sensorService.getLatestReadings().subscribe({
+      next: (data: LatestSensorReadings) => {
+        console.log('Recieved data: ', data);
+        this.latestSensorReadings = data;
+        this.isLoading = false;
       },
-      (error) => {
-        console.error('Error fetching AQI', error);
+      error: (error) => {
+        this.errorMessage = 'Failed to load sensor data';
+        this.isLoading = false;
       }
-    );
-  }
-
-  getAQIPercentage(): number {
-    switch (this.latestAQI) {
-      case 1: return 100;
-      case 2: return 80;
-      case 3: return 60;
-      case 4: return 40;
-      case 5: return 20;
-      case 6: return 10;
-      default: return 0;
-    }
-  }
-
-  getAQIColor(): string {
-    switch (this.latestAQI) {
-      case 1: return '#006400'; //Dark green
-      case 2: return '#008000'; //Green
-      case 3: return '#FFFF00'; //Orange
-      case 4: return '#FFA500'; //Dark orange
-      case 5: return '#FF4500'; //Red
-      case 6: return '#800080'; //Purple
-      default: return '#D3D3D3'; //Gray
-    }
-  }
-  
-  getAQIText(): string {
-    switch (this.latestAQI) {
-      case 1: return "Jako dobro";
-      case 2: return "Dobro";
-      case 3: return "Umjereno";
-      case 4: return "Loše";
-      case 5: return "Jako loše";
-      case 6: return "Ekstremno loše";
-      default: return "Nepoznato";
-    }
+    })
   }
 }

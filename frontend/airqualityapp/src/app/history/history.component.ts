@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SensorReading } from '../models/sensor-reading.model';
 import { SensorService } from '../sensor.service';
 import { Chart, CategoryScale} from 'chart.js';
