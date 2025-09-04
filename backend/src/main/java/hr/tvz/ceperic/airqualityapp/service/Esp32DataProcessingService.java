@@ -35,7 +35,7 @@ public class Esp32DataProcessingService {
         
         try {
             JsonNode mainNode = objectMapper.readTree(jsonData);
-            log.info("Processing ESP32 data recevied at: {}", timestamp);
+            log.info("Procesiraju se ESP32 očitanja primljena u: {}", timestamp);
             
             processBME280Data(mainNode, timestamp);
             processSCD40Data(mainNode, timestamp);
@@ -66,7 +66,8 @@ public class Esp32DataProcessingService {
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
-            
+
+            log.info("Senzor BME280: Temperatura: {} *C, Vlažnost zraka: {} %, Pritisak: {} hPa", bme280Reading.getTemperature(), bme280Reading.getHumidity(), bme280Reading.getPressure());
             bme280Repository.save(bme280Reading);
         } catch (Exception e){
             log.error("Error processing BME280 data: {}", e.getMessage());
@@ -90,7 +91,8 @@ public class Esp32DataProcessingService {
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
-
+                                        
+            log.info("Senzor SCD40: CO2: {} ppm, Vlažnost zraka: {} %, Temperatura: {} *C", scd40Reading.getCo2(), scd40Reading.getHumidity(), scd40Reading.getTemperature());            
             scd40Repository.save(scd40Reading);
         } catch (Exception e){
             log.error("Error processing SCD40 data: {}", e.getMessage());
@@ -112,7 +114,7 @@ public class Esp32DataProcessingService {
                                         .status(status)
                                         .timestamp(timestamp)
                                         .build();
-
+            log.info("Senzor SGP40: VOC indeks: {}", sgp40Reading.getVocIndex());
             sgp40Repository.save(sgp40Reading);                        
         } catch (Exception e){
             log.error("Error processing SGP40 data: {}", e.getMessage());
@@ -136,7 +138,7 @@ public class Esp32DataProcessingService {
                                             .status(status)
                                             .timestamp(timestamp)
                                             .build();
-
+            log.info("Senzor PMS5003: PM1: {} μg/m^3, PM2.5: {} μg/m^3, PM10: {} μg/m^3", pms5003Reading.getPm1(), pms5003Reading.getPm2_5(), pms5003Reading.getPm10());
             pms5003Repository.save(pms5003Reading);                               
         } catch (Exception e){
             log.error("Error processing PMS5003 data: {}", e.getMessage());

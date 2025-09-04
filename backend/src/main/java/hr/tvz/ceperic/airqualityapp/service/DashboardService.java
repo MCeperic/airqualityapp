@@ -2,7 +2,7 @@ package hr.tvz.ceperic.airqualityapp.service;
 
 import org.springframework.stereotype.Service;
 
-import hr.tvz.ceperic.airqualityapp.dto.LatestSensorReadingsDto;
+import hr.tvz.ceperic.airqualityapp.dto.SensorReadingsDto;
 import hr.tvz.ceperic.airqualityapp.mapper.SensorReadingMapper;
 import hr.tvz.ceperic.airqualityapp.model.Bme280Reading;
 import hr.tvz.ceperic.airqualityapp.model.Pms5003Reading;
@@ -26,16 +26,21 @@ public class DashboardService {
     private final Scd40Repository scd40Repository;
     private final Sgp40Repository sgp40Repository;
 
-    public LatestSensorReadingsDto getLatestReadings() {
+    public SensorReadingsDto getLatestReadings() {
         log.debug("Fetching latest sensor readings");
-
+/* 
         Bme280Reading bme280Reading = bme280Repository.findTopByOrderByTimestampDesc().orElseThrow(() -> new RuntimeException("No BME280 data found"));
         Pms5003Reading pms5003Reading = pms5003Repository.findTopByOrderByTimestampDesc().orElseThrow(() -> new RuntimeException("No PMS5003 data found"));
         Scd40Reading scd40Reading = scd40Repository.findTopByOrderByTimestampDesc().orElseThrow(() -> new RuntimeException("No SCD40 data found"));
         Sgp40Reading sgp40Reading = sgp40Repository.findTopByOrderByTimestampDesc().orElseThrow(() -> new RuntimeException("No SGP40 data found"));
+ */
+        Bme280Reading bme280Reading = bme280Repository.findById(12501L).orElseThrow(() -> new RuntimeException("No BME280 data found"));
+        Pms5003Reading pms5003Reading = pms5003Repository.findById(12454L).orElseThrow(() -> new RuntimeException("No PMS5003 data found"));
+        Scd40Reading scd40Reading = scd40Repository.findById(12501L).orElseThrow(() -> new RuntimeException("No SCD40 data found"));
+        Sgp40Reading sgp40Reading = sgp40Repository.findById(12501L).orElseThrow(() -> new RuntimeException("No SGP40 data found"));
 
         
-        return LatestSensorReadingsDto.builder()
+        return SensorReadingsDto.builder()
         .bme280Dto(SensorReadingMapper.toBme280Dto(bme280Reading))
         .pms5003Dto(SensorReadingMapper.toPms5003Dto(pms5003Reading))
         .scd40Dto(SensorReadingMapper.toScd40Dto(scd40Reading))

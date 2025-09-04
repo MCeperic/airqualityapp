@@ -1,6 +1,6 @@
 package hr.tvz.ceperic.airqualityapp.controller;
 
-import hr.tvz.ceperic.airqualityapp.dto.LatestSensorReadingsDto;
+import hr.tvz.ceperic.airqualityapp.dto.SensorReadingsDto;
 import hr.tvz.ceperic.airqualityapp.service.DashboardService;
 import lombok.AllArgsConstructor;
 
@@ -19,7 +19,7 @@ public class DashboardController {
     private final DashboardService dashboardService;
 
     @GetMapping("/latestReadings")
-    public ResponseEntity<LatestSensorReadingsDto> getLatestReadings(){
+    public ResponseEntity<SensorReadingsDto> getLatestReadings(){
         return ResponseEntity.ok(dashboardService.getLatestReadings());
     }
 
