@@ -1,14 +1,64 @@
-<div class="history-container">
-    <h2>Historical Data</h2>
+<div class="chart-container">
+    <div class="controls">
+        <div class="control-group">
+            <label>Senzor:</label>
+            <select [(ngModel)]="config.sensor" (change)="onSensorChange()">
+                <option value="bme280">BME280</option>
+                <option value="pms5003">PMS5003</option>
+                <option value="scd40">SCD40</option>
+                <option value="sgp40">SGP40</option>
+            </select>
+        </div> 
+        <div class="control-group">
+            <label>Parametar:</label>
+            <select [(ngModel)]="config.measurement" (change)="onMeasurementChange()">
+                <option *ngFor="let m of getCurrentSensorOptions()" [value]="m.key">
+                    {{m.label}} ({{m.unit}})
+                </option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>Opseg vremena:</label>
+            <select [(ngModel)]="config.timeRange" (change)="onTimeRangeChange()">
+                <option value="minute">Po minuti</option>
+                <option value="hourly">Po satu</option>
+                <option value="daily">Po danu</option>
+            </select>
+        </div>
+        <div class="date-controls">
+            <div *ngIf="config.timeRange === 'minute'" class="control-row">
+                <div class="control-group">
+                    <label>Datum:</label>
+                    <input type="date" [(ngModel)]="config.date" (change)="onDateChange()">
+                </div>
+                <div class="control-group">
+                    <label>Sat:</label>
+                    <select [(ngModel)]="config.hour" (change)="onDateChange()">
+                    <option *ngFor="let h of hours" [value]="h">{{h.toString().padStart(2, '0')}}:00</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="config.timeRange === 'hourly'" class="control-row">
+                <div class="control-group">
+                    <label>Datum:</label>
+                    <input type="date" [(ngModel)]="config.date" (change)="onDateChange()">
+                </div>
+            </div>
+            <div *ngIf="config.timeRange === 'daily'" class="control-row">
+                <div class="control-group">
+                    <label>Početni datum:</label>
+                    <input type="date" [(ngModel)]="config.startDate" (change)="onDateChange()">
+                </div>
+                <div class="control-group">
+                    <label>Završni datum:</label>
+                    <input type="date" [(ngModel)]="config.endDate" (change)="onDateChange()">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="loading">Učitavanje...</div>
+    </div>
 
-    <label for="sensorSelect">Select Sensor: </label>
-    <select id="sensorSelect" (change)="onSensorChange(selectedSensor)">
-        <option *ngFor="let sensor of sensorTypes" [value]="sensor">{{ sensor }}</option>
-    </select>
-
-    <button (click)="onRangeChange('24h')" [class.active]="selectedRange === '24h'">24h</button>
-    <button (click)="onRangeChange('7d')" [class.active]="selectedRange === '7d'">7d</button>
-
-    <canvas #myChart></canvas>
-
+    <div class="chart-wrapper">
+        <canvas #chart></canvas>
+    </div>
 </div>

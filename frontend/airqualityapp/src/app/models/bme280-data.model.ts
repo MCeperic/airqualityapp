@@ -3,5 +3,5 @@ export interface Bme280Data {
     humidity: number;
     pressure: number;
     status: string;
-    timestamp: Date;
+    timestamp: string;
 }

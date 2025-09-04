@@ -3,5 +3,5 @@ export interface Pms5003Data {
     pm2_5: number;
     pm10: number;
     status: string;
-    timestamp: Date;
+    timestamp: string;
 }

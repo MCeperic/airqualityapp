@@ -3,5 +3,5 @@ export interface Scd40Data {
     temperature: number;
     humidity: number;
     status: string;
-    timestamp: Date;
+    timestamp: string;
 }

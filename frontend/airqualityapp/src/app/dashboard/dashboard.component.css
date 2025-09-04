@@ -10,7 +10,7 @@ h1 {
 }
 
 h2 {
-  margin: 30px 0 15px;
+  margin: 20px 0 15px;
   color: #555;
   font-weight: 500;
 }
@@ -49,20 +49,28 @@ h2 {
   margin: 15px 0;
 }
 
+.excellent {
+  color: #0c5811;
+}
+
 .good {
-  color: #2e7d32;
+  color: #2e7d32; 
 }
 
 .moderate {
-  color: #f57f17;
+  color: #f57f17; 
 }
 
-.bad {
-  color: #d84315;
+.poor {
+  color: #d84315; 
 }
 
-.dangerous {
-  color: #c62828;
+.very-poor {
+  color: #b71c1c; 
+}
+
+.extremely-poor {
+  color: #7b1fa2; 
 }
 
 .sensor-status {
@@ -126,4 +134,18 @@ h2 {
   text-align: center;
   margin: 10px 0;
   color: #333;
+}
+
+.reading-time {
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 0px;
+  border-left: 4px;
+}
+
+.reading-time p {
+  margin: 0;
+  color: #495057;
+  font-size: 14px;
 }

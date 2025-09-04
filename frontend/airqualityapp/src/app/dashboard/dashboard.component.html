@@ -9,6 +9,10 @@
 
 <div class="dashboard-container" *ngIf="!isLoading && latestSensorReadings">
 
+  <div class="reading-time">
+    <p><strong>Vrijeme očitanja:</strong> {{ formatTimestamp() }}</p>
+  </div>
+
   <h2>Kvaliteta zraka</h2>
   <div class="sensor-grid">
     <div class="sensor-card">
@@ -16,20 +20,21 @@
         <h3>PM1</h3>
         <span class="sensor-unit">μg/m³</span>
       </div>
-      <div class="sensor-value good">{{ latestSensorReadings.pms5003Dto.pm1 }}</div>
-      <div class="sensor-status">Dobro</div>
-      <div class="sensor-trend trend-stable">
+      <div class="sensor-value">
+        {{ latestSensorReadings.pms5003Dto.pm1 }}
       </div>
     </div>
-    
+
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>PM2.5</h3>
         <span class="sensor-unit">μg/m³</span>
       </div>
-      <div class="sensor-value moderate">{{ latestSensorReadings.pms5003Dto.pm2_5 }}</div>
-      <div class="sensor-status">Umjereno</div>
-      <div class="sensor-trend trend-up">
+      <div class="sensor-value" [class]="getPM25Status().cssClass">
+        {{ latestSensorReadings.pms5003Dto.pm2_5 }}
+      </div>
+      <div class="sensor-status">
+        {{ getPM25Status().level }}
       </div>
     </div>
     
@@ -38,9 +43,11 @@
         <h3>PM10</h3>
         <span class="sensor-unit">μg/m³</span>
       </div>
-      <div class="sensor-value moderate">{{ latestSensorReadings.pms5003Dto.pm10 }}</div>
-      <div class="sensor-status">Umjereno</div>
-      <div class="sensor-trend trend-down">
+      <div class="sensor-value" [class]="getPM10Status().cssClass">
+        {{ latestSensorReadings.pms5003Dto.pm10 }}
+      </div>
+      <div class="sensor-status">
+        {{ getPM10Status().level }}
       </div>
     </div>
 
@@ -49,20 +56,24 @@
         <h3>CO2</h3>
         <span class="sensor-unit">ppm</span>
       </div>
-      <div class="sensor-value good">{{ latestSensorReadings.scd40Dto.co2 }}</div>
-      <div class="sensor-status">Dobro</div>
-      <div class="sensor-trend trend-stable">
+      <div class="sensor-value" [class]="getCO2Status().cssClass">
+        {{ latestSensorReadings.scd40Dto.co2 }}
+      </div>
+      <div class="sensor-status">
+        {{ getCO2Status().level }}
       </div>
     </div>
     
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>VOC</h3>
-        <span class="sensor-unit">mg/m³</span>
+        <span class="sensor-unit"></span>
       </div>
-      <div class="sensor-value good">{{ latestSensorReadings.sgp40Dto.vocIndex}}</div>
-      <div class="sensor-status">Dobro</div>
-      <div class="sensor-trend trend-up">
+      <div class="sensor-value" [class]="getVOCStatus().cssClass">
+        {{ latestSensorReadings.sgp40Dto.vocIndex }}
+      </div>
+      <div class="sensor-status">
+        {{ getVOCStatus().level }}
       </div>
     </div>
   </div>
