@@ -13,7 +13,7 @@
             <label>Parametar:</label>
             <select [(ngModel)]="config.measurement" (change)="onMeasurementChange()">
                 <option *ngFor="let m of getCurrentSensorOptions()" [value]="m.key">
-                    {{m.label}} ({{m.unit}})
+                    {{m.label}}
                 </option>
             </select>
         </div>

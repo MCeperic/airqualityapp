@@ -8,12 +8,16 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgCircleProgressModule} from 'ng-circle-progress';
 import { HistoryComponent } from './history/history.component';
+import { SensorDetailComponent } from './sensor-detail/sensor-detail.component';
+import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    HistoryComponent
+    HistoryComponent,
+    SensorDetailComponent,
+    SensorInfoComponent,
   ],
   imports: [
     BrowserModule,

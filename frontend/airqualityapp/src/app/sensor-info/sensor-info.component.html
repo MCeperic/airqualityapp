@@ -1,0 +1,23 @@
+<div class="sensor-info-container">
+  <nav class="sensor-nav">
+    <button [class.active]="selectedSensor === 'bme280'" 
+            (click)="onSensorSelect('bme280')">
+      BME280
+    </button>
+    <button [class.active]="selectedSensor === 'pms5003'" 
+            (click)="onSensorSelect('pms5003')">
+      PMS5003
+    </button>
+    <button [class.active]="selectedSensor === 'scd40'" 
+            (click)="onSensorSelect('scd40')">
+      SCD40
+    </button>
+    <button [class.active]="selectedSensor === 'sgp40'" 
+            (click)="onSensorSelect('sgp40')">
+      SGP40
+    </button>
+  </nav>
+  <div class="sensor-details">
+    <app-sensor-detail [sensorType]="selectedSensor"></app-sensor-detail>
+  </div>
+</div>

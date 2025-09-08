@@ -1,0 +1,41 @@
+<div class="sensor-detail" *ngIf="sensorInfo">
+  <div class="sensor-description">
+    <img [src]="sensorInfo.image" [alt]="sensorInfo.name" class="sensor-image">
+    <h2>{{sensorInfo.name}}</h2>
+    <div class="description-section">
+      <h4>Što mjeri?</h4>
+      <p>{{sensorInfo.description}}</p>
+    </div>
+    <div class="health-section" *ngIf="sensorInfo.healthImportance">
+      <h4>Koja je važnost mjerenja za zdravlje?</h4>
+      <p>{{sensorInfo.healthImportance}}</p>
+    </div>
+  </div>
+  <div class="values-table" *ngIf="sensorInfo.measurements && sensorInfo.measurements.length > 0">
+    <div *ngFor="let measurement of sensorInfo.measurements" class="measurement-table">
+      <h5>{{measurement.parameter}}</h5>
+      <table class="ranges-table">
+        <thead>
+          <tr>
+            <th>Razina</th>
+            <th>Raspon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let range of measurement.ranges" 
+              [class]="range.cssClass + '-row'">
+            <td>
+              <span class="level-indicator" [class]="range.cssClass"></span>
+              {{range.level}}
+            </td>
+            <td>
+              <span *ngIf="range.max !== Infinity">{{range.min}} - {{range.max}}</span>
+              <span *ngIf="range.max === Infinity">> {{range.min}}</span>
+              <span *ngIf="measurement.unit"> {{measurement.unit}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -103,21 +103,13 @@ export class HistoryComponent implements AfterViewInit{
   }
 
   createChart(data: SensorReadings[]): void {
-    console.log('=== CHART DEBUG ===');
-    console.log('Raw data from API:', data);
-    console.log('Data length:', data?.length);
     if (this.chart) {
       this.chart.destroy();
     }
-
     const chartData = this.prepareChartData(data);
-    console.log('Prepared chart data:', chartData);
-    console.log('Labels count:', chartData.labels?.length);
-    console.log('Values count:', chartData.values?.length);
 
-      if (!chartData.labels?.length || !chartData.values?.length) {
-    console.error('❌ NO DATA TO CHART!');
-    return; // Don't create chart with empty data
+    if (!chartData.labels?.length || !chartData.values?.length) {
+    return; 
   }
 
     const ctx = this.chartRef.nativeElement.getContext('2d');
@@ -128,7 +120,7 @@ export class HistoryComponent implements AfterViewInit{
         labels: chartData.labels,
         datasets: [
           {
-            label: this.getCurrentMeasurementLabel(),
+            label: this.getSensorDisplayName(),
             data: chartData.values,
             borderColor: 'rgba(75, 192, 192, 1)',
             backgroundColor: 'rgba(75, 192, 192, 0.2)',

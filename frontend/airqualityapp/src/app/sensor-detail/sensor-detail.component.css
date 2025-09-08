@@ -1,0 +1,142 @@
+.sensor-detail {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.sensor-description {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 450px;
+}
+
+.sensor-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.values-table {
+  justify-self: end;
+  max-width: 550px;
+  width: 100%;
+}
+
+.ranges-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.ranges-table th,
+.ranges-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.level-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.description-section {
+  margin-bottom: 15px;
+}
+
+.description-section h4 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.description-section p {
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+  font-size: 14px;
+}
+
+.health-section {
+  margin-bottom: 15px;  
+}
+
+.health-section h4 {
+  color: #333;
+  margin-bottom: 8px; 
+  font-size: 16px;
+}
+
+.health-section p {
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+  font-size: 14px;
+}
+
+.sensor-detail h2 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.measurement-table h5 {
+  margin: 15px 0 5px 0;
+  font-size: 18px;
+}
+
+.excellent-row {
+  background-color: #e8f5e8 !important;
+}
+
+.good-row {
+  background-color: #f1f8e9 !important;
+}
+
+.moderate-row {
+  background-color: #fff8e1 !important;
+}
+
+.poor-row {
+  background-color: #ffebee !important;
+}
+
+.very-poor-row {
+  background-color: #ffebee !important;
+}
+
+.extremely-poor-row {
+  background-color: #f3e5f5 !important;
+}
+
+.excellent {
+  background-color: #0c5811;
+}
+
+.good {
+  background-color: #2e7d32;
+}
+
+.moderate {
+  background-color: #f57f17;
+}
+
+.poor {
+  background-color: #d84315;
+}
+
+.very-poor {
+  background-color: #b71c1c;
+}
+
+.extremely-poor {
+  background-color: #7b1fa2;
+}

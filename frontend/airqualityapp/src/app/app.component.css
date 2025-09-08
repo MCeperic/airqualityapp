@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+  background-color: #1767a8;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
@@ -18,7 +18,7 @@
 
 .nav-link.active {
   font-weight: bold;
-  background-color: rgba(97, 218, 251, 0.2);
+  background-color: rgba(97, 218, 251, 0.493);
   border-bottom: 2px solid #61dafb;
 }
 

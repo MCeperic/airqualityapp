@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SensorReading } from './models/sensor-reading.model';
-import { SensorTrend } from './models/sensor-trend.model';
-import { LatestSensorReadings } from './models/latest-sensor-readings.model';
+import { SensorReadings } from './models/sensor-readings.model';
+import { SensorReadingsTimeSeries } from './models/sensor-readings-time-series.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,27 +13,19 @@ export class SensorService {
 
   constructor(private http: HttpClient) { }
 
-  getReadings(): Observable<SensorReading[]> {
-    return this.http.get<SensorReading[]>(`${this.apiUrl}/readings`);
+  getLatestReadings():Observable<SensorReadings> {
+    return this.http.get<SensorReadings>(`${this.apiUrl}/dashboard/latestReadings`);
   }
 
-  getReadingsByType(sensorType: string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/readings/${sensorType}`);
+  getMinuteData(date: string, hour: number): Observable<SensorReadingsTimeSeries> {
+    return this.http.get<SensorReadingsTimeSeries>(`${this.apiUrl}/history/minute?date=${date}&hour=${hour}`);
   }
 
-  getAQI(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/dashboard/aqi`);
+  getHourlyData(date: string): Observable<SensorReadingsTimeSeries> {
+    return this.http.get<SensorReadingsTimeSeries>(`${this.apiUrl}/history/hourly?date=${date}`);
   }
 
-  getReadingsWithTrends(): Observable<SensorTrend[]> {
-    return this.http.get<SensorTrend[]>(`${this.apiUrl}/dashboard/cards`)
-  }
-
-  getHistory(sensorType: string, range: string): Observable<SensorReading[]> {
-    return this.http.get<SensorReading[]>(`${this.apiUrl}/history?sensorType=${sensorType}&range=${range}`);
-  }
-
-  getLatestReadings():Observable<LatestSensorReadings> {
-    return this.http.get<LatestSensorReadings>(`${this.apiUrl}/dashboard/latestReadings`);
+  getDailyData(startDate: string, endDate: string): Observable<SensorReadingsTimeSeries> {
+    return this.http.get<SensorReadingsTimeSeries>(`${this.apiUrl}/history/daily?startDate=${startDate}&endDate=${endDate}`);
   }
 }

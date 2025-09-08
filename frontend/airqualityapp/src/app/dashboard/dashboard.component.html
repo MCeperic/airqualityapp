@@ -1,18 +1,16 @@
 <div *ngIf="isLoading">
-  <p>Loading sensor data...</p>
+  <p>Učitavanje...</p>
 </div>
 
 <div *ngIf="!isLoading && !latestSensorReadings && errorMessage">
   <p>{{ errorMessage }}</p>
-  <button (click)="loadLatestReadings()">Retry</button>
+  <button (click)="loadLatestReadings()">Ponovni pokušaj</button>
 </div>
 
 <div class="dashboard-container" *ngIf="!isLoading && latestSensorReadings">
-
   <div class="reading-time">
     <p><strong>Vrijeme očitanja:</strong> {{ formatTimestamp() }}</p>
   </div>
-
   <h2>Kvaliteta zraka</h2>
   <div class="sensor-grid">
     <div class="sensor-card">
@@ -24,7 +22,6 @@
         {{ latestSensorReadings.pms5003Dto.pm1 }}
       </div>
     </div>
-
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>PM2.5</h3>
@@ -37,7 +34,6 @@
         {{ getPM25Status().level }}
       </div>
     </div>
-    
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>PM10</h3>
@@ -50,7 +46,6 @@
         {{ getPM10Status().level }}
       </div>
     </div>
-
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>CO2</h3>
@@ -63,7 +58,6 @@
         {{ getCO2Status().level }}
       </div>
     </div>
-    
     <div class="sensor-card">
       <div class="sensor-header">
         <h3>VOC</h3>
@@ -77,31 +71,28 @@
       </div>
     </div>
   </div>
-  
   <h2>Klimatski uvjeti</h2>
   <div class="atmospheric-conditions">
     <div class="condition-card">
       <div class="condition-header">
-        <h3>Temperatura</h3>
+        <h3>Temperatura zraka</h3>
         <span class="condition-unit">°C</span>
       </div>
-      <div class="condition-value">{{ latestSensorReadings.bme280Dto.temperature }}</div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.temperature | number:'1.1-1' }}</div>
     </div>
-    
     <div class="condition-card">
       <div class="condition-header">
-        <h3>Vlažnost</h3>
+        <h3>Relativna vlažnost</h3>
         <span class="condition-unit">%</span>
       </div>
-      <div class="condition-value">{{ latestSensorReadings.bme280Dto.humidity }}</div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.humidity | number:'1.1-1' }}</div>
     </div>
-    
     <div class="condition-card">
       <div class="condition-header">
-        <h3>Pritisak</h3>
+        <h3>Tlak zraka</h3>
         <span class="condition-unit">hPa</span>
       </div>
-      <div class="condition-value">{{ latestSensorReadings.bme280Dto.pressure }}</div>
+      <div class="condition-value">{{ latestSensorReadings.bme280Dto.pressure | number:'1.1-1' }}</div>
     </div>
   </div>
 </div>
